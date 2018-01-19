@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'app';
 
   onNavigate(feature: string) {
-    console.log(`onNavigate to ${feature}`)
+    // console.log(`onNavigate to ${feature}`)
     this.loadedFeature = feature;
   }
 }
