@@ -24,11 +24,12 @@
           <input id="imagePath" class="form-control"
             type="text"
             formControlName="imagePath"
+            #imagePath
             >
         </div>
       </div>
       <div class="col-xs-12">
-        <img src="" class="img-responsive">
+        <img [src]="imagePath.value" class="img-responsive">
       </div>
       <div class="col-xs-12">
           <div class="form-group">
