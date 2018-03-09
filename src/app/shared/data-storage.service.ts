@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe';
@@ -15,7 +15,10 @@ export class DataStorageService {
   storeRecipes() {
     const token = this.authService.getToken();
 
-    return this.httpClient.put(this.recipesUrl + `?auth=${token}`, this.recipeService.getRecipes());
+    return this.httpClient.put(this.recipesUrl, this.recipeService.getRecipes(), {
+        observe: 'body',
+        params: new HttpParams().set('auth', token)        
+      });
   }
 
   getRecipes() {
