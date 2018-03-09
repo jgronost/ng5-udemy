@@ -16,9 +16,8 @@ export class DataStorageService {
     const token = this.authService.getToken();
 
     return this.httpClient.put(this.recipesUrl, this.recipeService.getRecipes(), {
-        observe: 'body',
-        params: new HttpParams().set('auth', token)        
-      });
+        observe: 'body'}
+      );
   }
 
   getRecipes() {
