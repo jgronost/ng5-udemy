@@ -1,4 +1,4 @@
-import { AuthActions, SIGNUP, SIGNIN, LOGOUT } from "./auth.actions";
+import { AuthActions, SIGNUP, SIGNIN, LOGOUT, SET_TOKEN } from "./auth.actions";
 
 export interface AuthState {
     token: string,
@@ -22,6 +22,11 @@ export function authReducers(state = initalState, action: AuthActions) {
             return {
                 ...state,
                 authenticated: false
+            };
+        case SET_TOKEN:
+            return {
+                ...state,
+                token: action.payload
             };
         default:
             return state;
