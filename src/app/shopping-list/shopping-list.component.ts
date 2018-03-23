@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../shared/ingredient';
-import { AppState } from './store/shopping-list.reducers';
 import { StartEdit } from './store/shopping-list.actions';
+import { AppState } from '../store/app.reducers';
 
 @Component({
   selector: 'app-shopping-list',
