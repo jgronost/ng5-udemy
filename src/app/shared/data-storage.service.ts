@@ -4,13 +4,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe';
 import 'rxjs/add/operator/map';
-import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class DataStorageService {
   private recipesUrl = 'https://jgronost-udemy-recipe-book.firebaseio.com/recipes.json';
 
-  constructor(private httpClient: HttpClient, private recipeService: RecipeService, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private recipeService: RecipeService) { }
 
   storeRecipes() {
     return this.httpClient.put(this.recipesUrl, this.recipeService.getRecipes(), {
@@ -19,7 +18,6 @@ export class DataStorageService {
   }
 
   getRecipes() {
-    // const token = this.authService.getToken();
 
     this.httpClient.get<Recipe[]>(this.recipesUrl) // + `?auth=${token}`)
       .map(

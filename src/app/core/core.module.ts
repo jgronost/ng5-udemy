@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthGuard } from '../auth/auth.guard';
-import { AuthService } from '../auth/auth.service';
 import { RecipeService } from '../recipes/recipe.service';
 import { DataStorageService } from '../shared/data-storage.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -28,7 +27,6 @@ import { LoggingInterceptor } from '../shared/logging-interceptor';
   providers: [
     RecipeService,
     DataStorageService,
-    AuthService,
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
