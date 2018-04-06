@@ -8,7 +8,7 @@ import 'rxjs/add/operator/mergeMap';
 import {fromPromise} from 'rxjs/observable/fromPromise';
 import * as firebase from 'firebase';
 
-import { TRY_SIGNUP, TrySignup, SIGNUP, SET_TOKEN, TRY_SIGNIN, SIGNIN } from './store/auth.actions';
+import { TRY_SIGNUP, TrySignup, SIGNUP, SET_TOKEN, TRY_SIGNIN, SIGNIN, LOGOUT, TRY_LOGOUT } from './store/auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -63,5 +63,20 @@ export class AuthEffects {
                 }
             ];
         });
+
+        @Effect()
+        authLogout = this.actions$
+            .ofType(TRY_LOGOUT)
+            .switchMap(() => {
+                return fromPromise(firebase.auth().signOut());
+            })
+            .mergeMap(() => {
+                this.router.navigate(['/']);
+                return [
+                    {
+                        type: LOGOUT
+                    },
+                ];
+            });
 
 }
