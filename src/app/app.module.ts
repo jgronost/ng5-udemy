@@ -30,7 +30,8 @@ import { AuthEffects } from './auth/auth.effects';
     AuthModule,
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
