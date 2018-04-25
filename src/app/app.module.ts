@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
@@ -15,8 +14,8 @@ import { reducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/auth.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools'
-import {environment} from './../environments/environment'
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from './../environments/environment';
 
 @NgModule({
   declarations: [
