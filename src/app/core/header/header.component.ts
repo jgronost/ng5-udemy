@@ -7,6 +7,7 @@ import { AppState } from '../../store/app.reducers';
 import { Observable } from 'rxjs/Observable';
 import { AuthState } from '../../auth/store/auth.reducers';
 import { TryLogout } from '../../auth/store/auth.actions';
+import {FetchRecipes} from '../../recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onFetchData() {
-    this.dataStorage.getRecipes();
+    this.store.dispatch(new FetchRecipes());
   }
 
   onLogout() {
