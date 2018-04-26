@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Actions, Effect} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/withLatestFrom';
 
-import {FETCH_RECIPES, FetchRecipes, SET_RECIPES} from './recipe.actions';
+import {FETCH_RECIPES, FetchRecipes, SET_RECIPES, STORE_RECIPES} from './recipe.actions';
 import {Recipe} from '../recipe';
+import {RecipeFeatureState} from './recipe.reducers';
 
 @Injectable()
 export class RecipeEffects {
@@ -32,7 +35,17 @@ export class RecipeEffects {
       }
     );
 
+  @Effect({dispatch: false})
+  recipeStore = this.actions$
+    .ofType(STORE_RECIPES)
+    .withLatestFrom(this.store.select('recipes'))
+    .switchMap(([action, state]) => {
+      return this.httpClient.put(this.recipesUrl, state.recipes, {
+        observe: 'body'}
+    );
+  });
 
-  constructor (private actions$: Actions, private httpClient: HttpClient){}
+
+  constructor (private actions$: Actions, private httpClient: HttpClient, private store: Store<RecipeFeatureState>){}
 
 }
