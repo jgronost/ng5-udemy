@@ -22,7 +22,7 @@ import { DataStorageService } from '../shared/data-storage.service';
   exports: [
     AppRoutingModule,
     HeaderComponent
-  ], 
+  ],
   providers: [
     ShoppingListService,
     RecipeService,
